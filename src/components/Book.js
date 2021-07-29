@@ -1,6 +1,12 @@
 import React from 'react'
 
 
+/**
+* @description This is the individual book component
+* @param {changeShelf} prop - function to move a book between shelves
+* @param {book} prop - individual book passed from Bookshelf.js
+*/
+
 const Book = ({book, changeShelf}) => {
 
   return (

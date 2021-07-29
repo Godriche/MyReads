@@ -2,8 +2,15 @@ import React from 'react'
 import Book from './Book'
 
 
-const Bookshelf = ({shelfName, books, changeShelf}) => { 
+/**
+* @description This is the shelf component 
+* @param {shelfName} props - Shelf names passed up to App.js
+*  @param {books} props - All the books passed down from App.js
+* @param {changeShelf} props - function to move a book between shelves
+*/
 
+
+const Bookshelf = ({shelfName, books, changeShelf}) => { 
 
   return (
     <div className="bookshelf">

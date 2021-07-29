@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom'
 import {search} from '../BooksAPI';
 import Book from './Book';
 
+/**
+* @description This is the search component
+* @param {changeShelf} prop - Prop to move a book between shelves
+*/
 
-const SearchBooks = ({changeShelf, books}) => {
+
+const SearchBooks = ({changeShelf}) => {
    const [query, setQuery] = useState('');
    const [foundBooks, setFoundBooks] = useState([]);
 
@@ -12,12 +17,11 @@ const SearchBooks = ({changeShelf, books}) => {
 const handleSearchBooks = async (e) => {
   try {
     const query = e.target.value ;
-    setQuery([query]);
+    setQuery(query);
 
   if(query.trim()){
-    const res = await search(query);
-
-    res.error ? setFoundBooks(foundBooks) :  setFoundBooks(res);
+    const response = await search(query); 
+    response.error ? setFoundBooks(foundBooks) :  setFoundBooks(response);
   }
   else {
     setFoundBooks(foundBooks);

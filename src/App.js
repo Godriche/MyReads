@@ -5,22 +5,29 @@ import Bookshelf from './components/Bookshelf';
 import SearchBooks from './components/SearchBooks';
 import {update, getAll} from './BooksAPI';
 
+/**
+* @description This is the App/parent component 
+*/
+
 const App = () => {
 const [allBooks, setAllbooks] = useState([]);
 
+// TODO: Filter Book response from BooksAPI.getAll into respective shelves
 const currentShelf = allBooks.filter(book => book.shelf === 'currentlyReading');
 const wantShelf = allBooks.filter(book => book.shelf === 'wantToRead');
 const readShelf = allBooks.filter(book => book.shelf === 'read');
 
 
+// TODO: Update shelf with book of choice
 const handleChangeShelf = async (book, shelf) => {
-   await update(book, shelf);  
+   await update(book, shelf); 
+
    const changeBook = await getAll();
-   setAllbooks(changeBook);
-  
+   setAllbooks(changeBook);  
 }
 
 
+// TODO: get all books from BooksAPI
 useEffect(() => {
   getAll()
       .then(allBooks => {
