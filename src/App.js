@@ -20,9 +20,8 @@ const readShelf = allBooks.filter(book => book.shelf === 'read');
 
 // TODO: Update shelf with book of choice
 const handleChangeShelf = async (book, shelf) => {
-   await update(book, shelf); 
-
-   const changeBook = await getAll();
+   await update(book, shelf);  
+    const changeBook = await getAll();
    setAllbooks(changeBook);  
 }
 
@@ -40,11 +39,9 @@ useEffect(() => {
 
   return (
     <div className="app">
-      <Route exact path="/search-books" component={() =>(
+      <Route exact path="/search" component={() =>(
         <SearchBooks 
-        // bookSearch={handleSearchBooks} 
         books={allBooks} 
-        // searchBooks={searchBooks}
         changeShelf={handleChangeShelf}/>
       )}/>
 
@@ -73,10 +70,10 @@ useEffect(() => {
         </div>
       </div>
       <div className="open-search">
-      <Link to ="/search-books">
-        <button>        
+      <Link to ="/search">
+        <span className="open-search-button">        
            Add a book           
-        </button>
+        </span>
         </Link>  
       </div>
      </>

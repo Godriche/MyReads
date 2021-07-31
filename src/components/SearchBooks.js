@@ -9,19 +9,22 @@ import Book from './Book';
 */
 
 
-const SearchBooks = ({changeShelf}) => {
+const SearchBooks = ({changeShelf, books}) => {
    const [query, setQuery] = useState('');
    const [foundBooks, setFoundBooks] = useState([]);
 
+   
+
 
 const handleSearchBooks = async (e) => {
+  
   try {
     const query = e.target.value ;
     setQuery(query);
 
   if(query.trim()){
-    const response = await search(query); 
-    response.error ? setFoundBooks(foundBooks) :  setFoundBooks(response);
+    const response = await search(query);   
+    response.error === true ? setFoundBooks(foundBooks) :  setFoundBooks(response);
   }
   else {
     setFoundBooks(foundBooks);
@@ -53,14 +56,24 @@ const handleSearchBooks = async (e) => {
     <div className="search-books-results">
       <ol className="books-grid">
        {
-         foundBooks.length > 0 && foundBooks.map((foundBook) => (
-          <Book 
+         foundBooks.length > 0 && foundBooks.map((foundBook) => {
+           const targetShelf = books.find( b => b.id === foundBook.id); 
+          
+           if(targetShelf ) {
+             foundBook.shelf = targetShelf.shelf; 
+           } else {
+             foundBook.shelf = "none";
+           }
+
+        return <Book 
            changeShelf={changeShelf}
            key={foundBook.id}
            books={foundBooks}
-          book={foundBook}
+           book={foundBook}
            />
-         ))
+         }          
+          
+         )
        }
       </ol>
     </div>
