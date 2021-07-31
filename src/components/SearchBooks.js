@@ -27,7 +27,7 @@ const handleSearchBooks = async (e) => {
     response.error === true ? setFoundBooks(foundBooks) :  setFoundBooks(response);
   }
   else {
-    setFoundBooks(foundBooks);
+    setFoundBooks([]);
   }
     
   } catch (error) {
